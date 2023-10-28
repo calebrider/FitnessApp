@@ -1,0 +1,11 @@
+D:\Code\FitnessApp\FitnessApp.Contracts\bin\Debug\net7.0\FitnessApp.Contracts.deps.json
+D:\Code\FitnessApp\FitnessApp.Contracts\bin\Debug\net7.0\FitnessApp.Contracts.dll
+D:\Code\FitnessApp\FitnessApp.Contracts\bin\Debug\net7.0\FitnessApp.Contracts.pdb
+D:\Code\FitnessApp\FitnessApp.Contracts\obj\Debug\net7.0\FitnessApp.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+D:\Code\FitnessApp\FitnessApp.Contracts\obj\Debug\net7.0\FitnessApp.Contracts.AssemblyInfoInputs.cache
+D:\Code\FitnessApp\FitnessApp.Contracts\obj\Debug\net7.0\FitnessApp.Contracts.AssemblyInfo.cs
+D:\Code\FitnessApp\FitnessApp.Contracts\obj\Debug\net7.0\FitnessApp.Contracts.csproj.CoreCompileInputs.cache
+D:\Code\FitnessApp\FitnessApp.Contracts\obj\Debug\net7.0\FitnessApp.Contracts.dll
+D:\Code\FitnessApp\FitnessApp.Contracts\obj\Debug\net7.0\refint\FitnessApp.Contracts.dll
+D:\Code\FitnessApp\FitnessApp.Contracts\obj\Debug\net7.0\FitnessApp.Contracts.pdb
+D:\Code\FitnessApp\FitnessApp.Contracts\obj\Debug\net7.0\ref\FitnessApp.Contracts.dll
