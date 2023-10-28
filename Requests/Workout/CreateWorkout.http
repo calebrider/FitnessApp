@@ -1,0 +1,14 @@
+POST http://localhost:5113/workouts
+Content-Type: application/json
+
+{
+    "name": "Legs",
+    "description": "Leg day workout",
+    "startDateTime": "2023-04-08T08:00:00",
+    "endDateTime": "2023-04-08T09:00:00",
+    "exercises": [
+        "Squats",
+        "Hamstring Curls",
+        "Calf Raises"
+    ]
+}
