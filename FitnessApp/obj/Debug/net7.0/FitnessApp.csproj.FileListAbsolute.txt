@@ -27,3 +27,4 @@ D:\Code\FitnessApp\FitnessApp\obj\Debug\net7.0\FitnessApp.genruntimeconfig.cache
 D:\Code\FitnessApp\FitnessApp\obj\Debug\net7.0\ref\FitnessApp.dll
 D:\Code\FitnessApp\FitnessApp\bin\Debug\net7.0\FitnessApp.Contracts.dll
 D:\Code\FitnessApp\FitnessApp\bin\Debug\net7.0\FitnessApp.Contracts.pdb
+D:\Code\FitnessApp\FitnessApp\bin\Debug\net7.0\ErrorOr.dll
