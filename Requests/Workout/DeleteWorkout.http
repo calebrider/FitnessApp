@@ -1,3 +1,3 @@
-@id=d66228d0-8663-4afe-9533-66df068781ca
+@id=7879c6c0-dbbf-4bdb-bd9d-4715c04e117e
 
 DELETE http://localhost:5113/workouts/{{id}}

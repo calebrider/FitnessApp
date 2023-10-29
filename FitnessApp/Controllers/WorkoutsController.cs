@@ -18,15 +18,14 @@ public class WorkoutsController : ApiController
     [HttpPost]
     public IActionResult CreateWorkout(CreateWorkoutRequest request)
     {
-        var workout = new Workout(
-            Guid.NewGuid(),
-            request.Name,
-            request.Description,
-            request.StartDateTime,
-            request.EndDateTime,
-            DateTime.UtcNow,
-            request.Exercises
-        );
+        ErrorOr<Workout> requestToWorkoutResults = Workout.From(request);
+
+        if (requestToWorkoutResults.IsError)
+        {
+            return Problem(requestToWorkoutResults.Errors);
+        }
+
+        var workout = requestToWorkoutResults.Value;
 
         ErrorOr<Created> createWorkoutResult = _workoutService.CreateWorkout(workout);
 
@@ -50,15 +49,14 @@ public class WorkoutsController : ApiController
     [HttpPut("{id:guid}")]
     public IActionResult UpsertWorkout(Guid id, UpsertWorkoutRequest request)
     {
-        var workout = new Workout(
-            id,
-            request.Name,
-            request.Description,
-            request.StartDateTime,
-            request.EndDateTime,
-            DateTime.UtcNow,
-            request.Exercises
-        );
+        ErrorOr<Workout> requestToWorkoutResult = Workout.From(id, request);
+
+        if (requestToWorkoutResult.IsError)
+        {
+            return Problem(requestToWorkoutResult.Errors);
+        }
+
+        var workout = requestToWorkoutResult.Value;
 
         ErrorOr<UpsertedWorkout> upsertWorkoutResult = _workoutService.UpsertWorkout(workout);
 

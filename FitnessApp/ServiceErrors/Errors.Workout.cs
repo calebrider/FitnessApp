@@ -10,5 +10,11 @@ public static class Errors
             code: "Workout.NotFound",
             description: "Workout not found"
         );
+
+        public static Error InvalidName => Error.Validation(
+            code: "Workout.InvalidName",
+            description: $"Workout name must be at least {Models.Workout.MinNameLength} " +
+                $"and at most {Models.Workout.MaxNameLength} characters long"
+        );
     }
 }
