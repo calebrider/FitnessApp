@@ -1,3 +1,6 @@
-@id=00000000-0000-0000-0000-000000000000
+@id=55f787f4-47d5-4b3f-b41b-3a495f5ee5e9
 
 GET http://localhost:5113/workouts/{{id}}
+
+###
+GET http://localhost:5113/Workouts/8f8c01b9-3263-4127-8ded-7d3899c5266b
