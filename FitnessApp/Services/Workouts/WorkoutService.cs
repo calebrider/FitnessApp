@@ -1,4 +1,6 @@
+using ErrorOr;
 using FitnessApp.Models;
+using FitnessApp.ServiceErrors;
 
 namespace FitnessApp.Services.Workouts;
 
@@ -6,23 +8,35 @@ public class WorkoutService : IWorkoutService
 {
     private static readonly Dictionary<Guid, Workout> _workouts = new();
 
-    public void CreateWorkout(Workout workout)
+    public ErrorOr<Created> CreateWorkout(Workout workout)
     {
         _workouts.Add(workout.Id, workout);
+
+        return Result.Created;
     }
 
-    public Workout GetWorkout(Guid id)
+    public ErrorOr<Workout> GetWorkout(Guid id)
     {
-        return _workouts[id];
+        if (_workouts.TryGetValue(id, out var workout))
+        {
+            return workout;
+        }
+
+        return Errors.Workout.NotFound;
     }
 
-    public void UpsertWorkout(Workout workout)
+    public ErrorOr<UpsertedWorkout> UpsertWorkout(Workout workout)
     {
+        var isNewlyCreated = !_workouts.ContainsKey(workout.Id);
         _workouts[workout.Id] = workout;
+
+        return new UpsertedWorkout(isNewlyCreated);
     }
 
-    public void DeleteWorkout(Guid id)
+    public ErrorOr<Deleted> DeleteWorkout(Guid id)
     {
         _workouts.Remove(id);
+
+        return Result.Deleted;
     }
 }

@@ -1,14 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using FitnessApp.Contracts.Workout;
 using FitnessApp.Models;
-using System.Runtime.CompilerServices;
 using FitnessApp.Services.Workouts;
+using ErrorOr;
 
 namespace FitnessApp.Controllers;
 
-[ApiController]
-[Route("[controller]")]
-public class WorkoutsController : ControllerBase
+public class WorkoutsController : ApiController
 {
     private readonly IWorkoutService _workoutService;
 
@@ -30,41 +28,23 @@ public class WorkoutsController : ControllerBase
             request.Exercises
         );
 
-        _workoutService.CreateWorkout(workout);
+        ErrorOr<Created> createWorkoutResult = _workoutService.CreateWorkout(workout);
 
-        var response = new WorkoutResponse(
-            workout.Id,
-            workout.Name,
-            workout.Description,
-            workout.StartDateTime,
-            workout.EndDateTime,
-            workout.LastModifiedDateTime,
-            workout.Exercises
-        );
-
-        return CreatedAtAction(
-            actionName: nameof(GetWorkout),
-            routeValues: new { id = workout.Id },
-            value: response
+        return createWorkoutResult.Match(
+            created => CreatedAtGetWorkout(workout),
+            Problem
         );
     }
 
     [HttpGet("{id:guid}")]
     public IActionResult GetWorkout(Guid id)
     {
-        Workout workout = _workoutService.GetWorkout(id);
+        ErrorOr<Workout> getWorkoutResult = _workoutService.GetWorkout(id);
 
-        var response = new WorkoutResponse(
-            workout.Id,
-            workout.Name,
-            workout.Description,
-            workout.StartDateTime,
-            workout.EndDateTime,
-            workout.LastModifiedDateTime,
-            workout.Exercises
+        return getWorkoutResult.Match(
+            workout => Ok(MapWorkoutResponse(workout)),
+            Problem
         );
-        
-        return Ok(response);
     }
 
     [HttpPut("{id:guid}")]
@@ -80,17 +60,44 @@ public class WorkoutsController : ControllerBase
             request.Exercises
         );
 
-        _workoutService.UpsertWorkout(workout);
+        ErrorOr<UpsertedWorkout> upsertWorkoutResult = _workoutService.UpsertWorkout(workout);
 
-        // TODO: return 201 if new workout was created
-
-        return NoContent();
+        return upsertWorkoutResult.Match(
+            upserted => upserted.IsNewlyCreated ? CreatedAtGetWorkout(workout) : NoContent(),
+            Problem
+        );
     }
 
     [HttpDelete("{id:guid}")]
     public IActionResult DeleteWorkout(Guid id)
     {
-        _workoutService.DeleteWorkout(id);
-        return Ok(id);
+        ErrorOr<Deleted> deleteWorkoutResult = _workoutService.DeleteWorkout(id);
+
+        return deleteWorkoutResult.Match(
+            deleted => NoContent(),
+            Problem
+        );
+    }
+
+    private static WorkoutResponse MapWorkoutResponse(Workout workout)
+    {
+        return new WorkoutResponse(
+            workout.Id,
+            workout.Name,
+            workout.Description,
+            workout.StartDateTime,
+            workout.EndDateTime,
+            workout.LastModifiedDateTime,
+            workout.Exercises
+        );
+    }
+
+    private IActionResult CreatedAtGetWorkout(Workout workout)
+    {
+        return CreatedAtAction(
+            actionName: nameof(GetWorkout),
+            routeValues: new { id = workout.Id },
+            value: MapWorkoutResponse(workout)
+        );
     }
 }

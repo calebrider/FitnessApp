@@ -1,11 +1,12 @@
+using ErrorOr;
 using FitnessApp.Models;
 
 namespace FitnessApp.Services.Workouts;
 
 public interface IWorkoutService
 {
-    void CreateWorkout(Workout workout);
-    Workout GetWorkout(Guid id);
-    void UpsertWorkout(Workout workout);
-    void DeleteWorkout(Guid id);
+    ErrorOr<Created> CreateWorkout(Workout workout);
+    ErrorOr<Workout> GetWorkout(Guid id);
+    ErrorOr<UpsertedWorkout> UpsertWorkout(Workout workout);
+    ErrorOr<Deleted> DeleteWorkout(Guid id);
 }

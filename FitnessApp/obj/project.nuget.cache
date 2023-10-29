@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "cTQJbA5lpwUyMtegkRmfHln8HEZ4RMFbFjnnHb8SLxZUBMuygYUrb9mN7a0l6YvCVV6DBz5DWM44FhU3JvrvgQ==",
+  "dgSpecHash": "mMhLFiWz3UFfzug2z2ocnE/sARoOZ9gE0hLwCt0a+afaV+MoMNFoxdhwVQFI4CpTYO0nxJYfzlU5hIPy9VULqA==",
   "success": true,
   "projectFilePath": "D:\\Code\\FitnessApp\\FitnessApp\\FitnessApp.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\caleb\\.nuget\\packages\\erroror\\1.3.0\\erroror.1.3.0.nupkg.sha512"
+  ],
   "logs": []
 }
