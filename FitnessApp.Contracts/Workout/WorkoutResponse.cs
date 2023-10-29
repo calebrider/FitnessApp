@@ -7,5 +7,5 @@ public record WorkoutResponse(
     DateTime StartDateTime,
     DateTime EndDateTime,
     DateTime LastModifiedDateTime,
-    List<string> exercises
+    List<string> Exercises
 );

@@ -5,5 +5,5 @@ public record UpsertWorkoutRequest(
     string Description,
     DateTime StartDateTime,
     DateTime EndDateTime,
-    List<string> exercises
+    List<string> Exercises
 );
