@@ -6,4 +6,6 @@ public interface IWorkoutService
 {
     void CreateWorkout(Workout workout);
     Workout GetWorkout(Guid id);
+    void UpsertWorkout(Workout workout);
+    void DeleteWorkout(Guid id);
 }
