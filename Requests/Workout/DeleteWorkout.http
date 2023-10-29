@@ -1,3 +1,3 @@
-@id=00000000-0000-0000-0000-000000000000
+@id=ae67d981-78f5-4335-9266-a9ada097a6d4
 
 DELETE http://localhost:5113/workouts/{{id}}

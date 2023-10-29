@@ -1,4 +1,4 @@
-@id=55f787f4-47d5-4b3f-b41b-3a495f5ee5e9
+@id=ae67d981-78f5-4335-9266-a9ada097a6d4
 
 GET http://localhost:5113/workouts/{{id}}
 

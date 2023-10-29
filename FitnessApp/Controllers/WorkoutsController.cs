@@ -70,12 +70,27 @@ public class WorkoutsController : ControllerBase
     [HttpPut("{id:guid}")]
     public IActionResult UpsertWorkout(Guid id, UpsertWorkoutRequest request)
     {
-        return Ok(request);
+        var workout = new Workout(
+            id,
+            request.Name,
+            request.Description,
+            request.StartDateTime,
+            request.EndDateTime,
+            DateTime.UtcNow,
+            request.Exercises
+        );
+
+        _workoutService.UpsertWorkout(workout);
+
+        // TODO: return 201 if new workout was created
+
+        return NoContent();
     }
 
     [HttpDelete("{id:guid}")]
     public IActionResult DeleteWorkout(Guid id)
     {
+        _workoutService.DeleteWorkout(id);
         return Ok(id);
     }
 }
